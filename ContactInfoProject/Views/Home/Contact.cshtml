@@ -1,0 +1,59 @@
+@{
+    ViewBag.Title = "İletişim";
+}
+
+<h2>İletişim Formu</h2>
+
+<form id="contactForm">
+    <div class="form-group">
+        <label for="name">Ad:</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="surname">Soyad:</label>
+        <input type="text" class="form-control" id="surname" name="surname" required>
+    </div>
+    <div class="form-group">
+        <label for="date">Doğum Tarihi:</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+    </div>
+    <div class="form-group">
+        <label for="age">Yaş:</label>
+        <input type="number" class="form-control" id="age" name="age" required>
+    </div>
+    <div class="form-group">
+        <label for="city">Yaşadığı Şehir:</label>
+        <select class="form-control" id="city" name="city">
+            @foreach (var city in ViewBag.Cities)
+            {
+                <option value="@city">@city</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#contactForm').submit(function (event) {
+                event.preventDefault();
+                var formData = {
+                    name: $('#name').val(),
+                    surname: $('#surname').val(),
+                    date: $('#date').val(),
+                    age: $('#age').val(),
+                    city: $('#city').val()
+                };
+                $.ajax({
+                    url: '@Url.Action("SubmitContactForm", "Home")',
+                    type: 'POST',
+                    data: formData,
+                    success: function (result) {
+                        alert(result.message);
+                    }
+                });
+            });
+        });
+    </script>
+}
