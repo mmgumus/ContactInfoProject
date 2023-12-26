@@ -5,5 +5,5 @@
 - Bu iletişim sayfasında ad, soyad, tarih, yaş ve yaşadığı şehir için form elemanları ekledim. Şehir seçimi için combobox kullandım
 - Ayrıca bu razor sayfasına form verilerini HomeController'daki bir action methoda submitContactForm ile post ettim.
 
-![image1](CleanShot1)
-![image2](CleanShot2)
+![image1](CleanShot1.png)
+![image2](CleanShot2.png)
